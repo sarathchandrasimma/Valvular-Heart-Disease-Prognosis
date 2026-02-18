@@ -2,11 +2,30 @@ from flask import Flask, render_template, request
 import pickle
 import numpy as np
 import os
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.base import BaseEstimator
+
+class HybridModel(BaseEstimator):
+    def __init__(self):
+        self.rf_clf = RandomForestClassifier(random_state=42)
+        self.svm_clf = SVC(probability=True, random_state=42)
+
+    def fit(self, X, y):
+        self.rf_clf.fit(X, y)
+        self.svm_clf.fit(X, y)
+        return self
+
+    def predict(self, X):
+        rf_predictions = self.rf_clf.predict_proba(X)[:, 1]
+        svm_predictions = self.svm_clf.decision_function(X)
+        hybrid_predictions = (rf_predictions + svm_predictions) / 2
+        return (hybrid_predictions > 0.5).astype(int)
 
 app = Flask(__name__)
 
-# ✅ Updated model path to use XGBoost model
-MODEL_PATH = os.path.join('model', 'xgb_model.pkl')
+# Paths to new model
+MODEL_PATH = os.path.join('model', 'hybrid_model.pkl')
 
 # Load the trained model
 try:
@@ -26,14 +45,16 @@ def predict():
             return "Model not loaded. Please check your model file."
 
         try:
+            # Updated fields to match actual/DataSet.csv columns (excluding TARGET)
             fields = [
-                'age', 'sex', 'cp', 'bp', 'cholesterol',
-                'fbs', 'ekg', 'maxhr', 'exangina',
-                'st_depression', 'slope', 'vessels', 'thallium'
+                'AGE', 'GENDER', 'AORTIC_VALVE', 'LEFT_ATRIUM', 'EDD', 'ESD', 'EF',
+                'IVS_D', 'PW_D', 'AORTA', 'I_A_S', 'RVSP', 'RWMA'
             ]
             features = [float(request.form[field]) for field in fields]
 
+            # No scaling, as model was trained on unscaled data
             input_array = np.array([features])
+
             prediction = model.predict(input_array)[0]
 
             if prediction == 1:

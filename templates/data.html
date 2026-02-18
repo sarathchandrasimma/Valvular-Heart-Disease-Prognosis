@@ -5,37 +5,35 @@
     <h2 style="text-align: center; color: #c62828; margin-bottom: 1.5rem;">📁 Dataset Information</h2>
 
     <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-        This application uses a dataset consisting of <strong>270 patient records</strong> with <strong>13 clinical features</strong> to train a machine learning model that predicts the risk of heart disease.
+        This application uses a real-world dataset collected from <strong>Medicore Hospital, Srikakulam</strong> consisting of <strong>1280 patient records</strong> with <strong>13 clinical features</strong> to train a hybrid machine learning model that predicts the risk of heart disease.
     </p>
 
     <h3 style="color: #444;">🧬 Key Dataset Characteristics:</h3>
     <ul style="font-size: 1.05rem; line-height: 1.8; padding-left: 1.5rem; margin-bottom: 1.5rem;">
-        <li><strong>Total Samples:</strong> 270</li>
+        <li><strong>Total Samples:</strong> 1280</li>
         <li><strong>Target Variable:</strong> Indicates presence (1) or absence (0) of heart disease</li>
+        <li><strong>Source:</strong> Medicore Hospital, Srikakulam - Real clinical data</li>
         <li><strong>Clinical Features Include:</strong>
             <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
-                <li>Age</li>
-                <li>Sex</li>
-                <li>Chest Pain Type</li>
-                <li>Resting Blood Pressure</li>
-                <li>Cholesterol</li>
-                <li>Fasting Blood Sugar</li>
-                <li>Resting EKG Results</li>
-                <li>Maximum Heart Rate Achieved</li>
-                <li>Exercise Induced Angina</li>
-                <li>ST Depression</li>
-                <li>Slope of the ST Segment</li>
-                <li>Number of Major Vessels Colored by Fluoroscopy</li>
-                <li>Thallium Stress Test Result</li>
+                <li>AGE - Patient age in years</li>
+                <li>GENDER - Male (1) or Female (0)</li>
+                <li>AORTIC VALVE - Aortic valve condition</li>
+                <li>LEFT ATRIUM - Left atrium size (cm)</li>
+                <li>EDD - End Diastolic Dimension</li>
+                <li>ESD - End Systolic Dimension</li>
+                <li>EF - Ejection Fraction (%)</li>
+                <li>IVS (D) - Interventricular Septum Thickness</li>
+                <li>PW (D) - Posterior Wall Thickness</li>
+                <li>AORTA - Aortic root diameter</li>
+                <li>I.A.S - Interatrial Septum</li>
+                <li>RVSP - Right Ventricular Systolic Pressure</li>
+                <li>RWMA - Regional Wall Motion Abnormality</li>
             </ul>
         </li>
     </ul>
 
     <p style="font-size: 1rem;">
-        🔗 Learn more about the original dataset on the 
-        <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease" target="_blank" style="color: #1976d2; text-decoration: underline;">
-            UCI Machine Learning Repository
-        </a>.
+        📊 This dataset provides comprehensive echocardiographic and clinical parameters for accurate heart disease prediction using advanced machine learning techniques.
     </p>
 </main>
 {% endblock %}

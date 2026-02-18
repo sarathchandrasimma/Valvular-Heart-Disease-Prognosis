@@ -1,70 +1,163 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <main>
-    <h2 style="text-align: center; margin-bottom: 1.5rem;">🩺 Enter Patient Details</h2>
-    <form method="POST" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; background: #fafafa; padding: 2rem; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.05);">
-        
-        <label>Age:
-            <input type="number" name="age" required>
-        </label>
+  <h2 style="text-align: center; margin-bottom: 1.5rem">
+    🩺 Enter Patient Details
+  </h2>
+  <p
+    style="
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 14px;
+      color: #666;
+    "
+  >
+    Please provide the clinical measurements from Medicore Hospital, Srikakulam
+    dataset format
+  </p>
+  <form
+    method="POST"
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      background: #fafafa;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    "
+  >
+    <label
+      >AGE (years):
+      <input type="number" name="AGE" required />
+      <small style="color: #666; font-size: 12px"
+        >Patient chronological age | Variable</small
+      >
+    </label>
 
-        <label>Sex:
-    <select name="sex" required>
-        <option value="">-- Select Sex --</option>
-        <option value="1">Male</option>
-        <option value="0">Female</option>
-    </select>
-</label>
+    <label
+      >GENDER:
+      <select name="GENDER" required>
+        <option value="">-- Select Gender --</option>
+        <option value="1">Male (1)</option>
+        <option value="0">Female (0)</option>
+      </select>
+      <small style="color: #666; font-size: 12px"
+        >Biological sex classification | Binary (0=Female, 1=Male)</small
+      >
+    </label>
 
+    <label
+      >AORTIC VALVE:
+      <input type="number" name="AORTIC_VALVE" required />
+      <small style="color: #666; font-size: 12px"
+        >Cross-sectional valve area | 2.5-4.0 cm²</small
+      >
+    </label>
 
-        <label>Chest Pain Type (1–4):
-            <input type="number" name="cp" required>
-        </label>
+    <label
+      >LEFT ATRIUM (cm):
+      <input type="number" step="0.1" name="LEFT_ATRIUM" required />
+      <small style="color: #666; font-size: 12px"
+        >Chamber diameter | &lt;40 mm</small
+      >
+    </label>
 
-        <label>Blood Pressure:
-            <input type="number" name="bp" required>
-        </label>
+    <label
+      >EDD (End Diastolic Dimension):
+      <input type="number" step="0.1" name="EDD" required />
+      <small style="color: #666; font-size: 12px"
+        >Left ventricular diameter at diastole | 3.5-5.6 cm</small
+      >
+    </label>
 
-        <label>Cholesterol:
-            <input type="number" name="cholesterol" required>
-        </label>
+    <label
+      >ESD (End Systolic Dimension):
+      <input type="number" step="0.1" name="ESD" required />
+      <small style="color: #666; font-size: 12px"
+        >Left ventricular diameter at systole | 2.0-4.0 cm</small
+      >
+    </label>
 
-        <label>Fasting Blood Sugar > 120 (1 = Yes, 0 = No):
-            <input type="number" name="fbs" required>
-        </label>
+    <label
+      >EF (Ejection Fraction %):
+      <input type="number" step="0.1" name="EF" required />
+      <small style="color: #666; font-size: 12px"
+        >Ventricular contractile function | 50-70%</small
+      >
+    </label>
 
-        <label>EKG Results (0–2):
-            <input type="number" name="ekg" required>
-        </label>
+    <label
+      >IVS (D) (Interventricular Septum):
+      <input type="number" step="0.1" name="IVS_D" required />
+      <small style="color: #666; font-size: 12px"
+        >Septal wall thickness at diastole | 0.6-1.2 mm</small
+      >
+    </label>
 
-        <label>Max Heart Rate:
-            <input type="number" name="maxhr" required>
-        </label>
+    <label
+      >PW (D) (Posterior Wall):
+      <input type="number" step="0.1" name="PW_D" required />
+      <small style="color: #666; font-size: 12px"
+        >Posterior wall thickness at diastole | 0.6-1.2 mm</small
+      >
+    </label>
 
-        <label>Exercise Angina (1 = Yes, 0 = No):
-            <input type="number" name="exangina" required>
-        </label>
+    <label
+      >AORTA (Aortic root diameter):
+      <input type="number" step="0.1" name="AORTA" required />
+      <small style="color: #666; font-size: 12px"
+        >Proximal aortic root diameter | &lt;30 mm</small
+      >
+    </label>
 
-        <label>ST Depression:
-            <input type="number" step="0.1" name="st_depression" required>
-        </label>
+    <label
+      >I.A.S (Interatrial Septum):
+      <select name="I_A_S" required>
+        <option value="">-- Select --</option>
+        <option value="0">Normal (0)</option>
+        <option value="1">Abnormal (1)</option>
+      </select>
+      <small style="color: #666; font-size: 12px"
+        >Structural integrity assessment | Binary (0=Normal, 1=Abnormal)</small
+      >
+    </label>
 
-        <label>Slope of ST (1–3):
-            <input type="number" name="slope" required>
-        </label>
+    <label
+      >RVSP (Right Ventricular Systolic Pressure):
+      <input type="number" name="RVSP" required />
+      <small style="color: #666; font-size: 12px"
+        >RV pressure estimate | &lt;35 mmHg</small
+      >
+    </label>
 
-        <label>Number of Vessels (0–3):
-            <input type="number" name="vessels" required>
-        </label>
+    <label
+      >RWMA (Regional Wall Motion Abnormality):
+      <select name="RWMA" required>
+        <option value="">-- Select --</option>
+        <option value="0">Normal (0)</option>
+        <option value="1">Abnormal (1)</option>
+      </select>
+      <small style="color: #666; font-size: 12px"
+        >Qualitative segmental kinesis assessment | Binary (0=Normal,
+        1=Abnormal)</small
+      >
+    </label>
 
-        <label>Thallium (3 = Normal, 6 = Fixed Defect, 7 = Reversible Defect):
-            <input type="number" name="thallium" required>
-        </label>
-
-        <div style="grid-column: span 2; text-align: center;">
-            <input type="submit" value="Predict" style="background-color: #1976d2; color: white; padding: 12px 30px; border: none; font-size: 1rem; border-radius: 8px; cursor: pointer;">
-        </div>
-    </form>
+    <div style="grid-column: span 2; text-align: center">
+      <input
+        type="submit"
+        value="Predict Heart Disease Risk"
+        style="
+          background-color: #1976d2;
+          color: white;
+          padding: 12px 30px;
+          border: none;
+          font-size: 1rem;
+          border-radius: 8px;
+          cursor: pointer;
+        "
+      />
+    </div>
+  </form>
 </main>
 {% endblock %}
